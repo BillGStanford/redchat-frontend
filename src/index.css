@@ -1,0 +1,304 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base styles */
+@layer base {
+  * {
+    @apply box-border;
+  }
+  
+  html {
+    @apply h-full;
+  }
+  
+  body {
+    @apply h-full m-0 p-0 antialiased;
+    font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+      Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  #root {
+    @apply h-full;
+  }
+  
+  code {
+    font-family: 'JetBrains Mono', source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+      monospace;
+  }
+}
+
+/* Custom scrollbar styles */
+@layer utilities {
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(71 85 105) rgb(30 41 59);
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-track {
+    @apply bg-slate-800;
+    border-radius: 3px;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    @apply bg-slate-600 hover:bg-slate-500;
+    border-radius: 3px;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    @apply bg-slate-500;
+  }
+}
+
+/* Custom component styles */
+@layer components {
+  .glass-effect {
+    @apply bg-opacity-50 backdrop-blur-sm;
+  }
+  
+  .input-glow:focus {
+    box-shadow: 0 0 0 2px rgba(248, 113, 113, 0.3);
+  }
+  
+  .message-bubble {
+    @apply max-w-xs lg:max-w-md px-4 py-2 rounded-lg break-words shadow-md transition-transform hover:-translate-y-0.5;
+  }
+  
+  .message-bubble-self {
+    @apply bg-red-600 text-white;
+  }
+  
+  .message-bubble-other {
+    @apply bg-slate-700 text-gray-200;
+  }
+  
+  .sidebar-item {
+    @apply flex items-center justify-between py-2 px-2 rounded-lg hover:bg-slate-700 transition-colors;
+  }
+  
+  .notification-toast {
+    @apply fixed top-4 right-4 px-4 py-3 rounded-lg shadow-lg z-50 animate-fade-in;
+  }
+  
+  .notification-error {
+    @apply bg-red-500 bg-opacity-90 border border-red-400 text-white;
+  }
+  
+  .notification-success {
+    @apply bg-green-500 bg-opacity-90 border border-green-400 text-white;
+  }
+  
+  .btn-primary {
+    @apply bg-red-600 hover:bg-red-700 disabled:bg-gray-600 text-white py-2 px-4 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50;
+  }
+  
+  .btn-secondary {
+    @apply bg-slate-600 hover:bg-slate-700 disabled:bg-gray-600 text-white py-2 px-4 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-opacity-50;
+  }
+  
+  .btn-icon {
+    @apply p-2 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-opacity-50;
+  }
+  
+  .form-input {
+    @apply w-full px-4 py-2 bg-transparent border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-red-400 input-glow transition-colors;
+  }
+  
+  .form-checkbox {
+    @apply appearance-none w-4 h-4 border border-slate-600 rounded bg-slate-800 cursor-pointer;
+  }
+  
+  .form-checkbox:checked {
+    @apply bg-red-500 border-red-500;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 5l-6 6L4 9' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  }
+  
+  .form-checkbox:focus {
+    @apply outline-none ring-2 ring-red-500 ring-opacity-50;
+  }
+  
+  .card {
+    @apply bg-slate-800 glass-effect rounded-lg border border-slate-700 p-6;
+  }
+  
+  .reaction-menu {
+    @apply flex items-center p-1 rounded bg-slate-800 bg-opacity-80 backdrop-blur-sm;
+  }
+}
+
+/* Custom animations */
+@layer utilities {
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes slide-in-right {
+    from {
+      opacity: 0;
+      transform: translateX(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes slide-in-left {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes pulse-slow {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+  
+  .animate-fade-in {
+    animation: fade-in 0.3s ease-out;
+  }
+  
+  .animate-slide-in-right {
+    animation: slide-in-right 0.3s ease-out;
+  }
+  
+  .animate-slide-in-left {
+    animation: slide-in-left 0.3s ease-out;
+  }
+  
+  .animate-pulse-slow {
+    animation: pulse-slow 2s infinite;
+  }
+}
+
+/* Mobile responsiveness improvements */
+@media (max-width: 768px) {
+  .message-bubble {
+    @apply max-w-xs;
+  }
+  
+  .sidebar-mobile {
+    @apply absolute top-0 right-0 h-full w-80 transform transition-transform duration-300 ease-in-out z-40;
+  }
+  
+  .sidebar-mobile.closed {
+    @apply translate-x-full;
+  }
+  
+  .sidebar-mobile.open {
+    @apply translate-x-0;
+  }
+  
+  .backdrop {
+    @apply fixed inset-0 bg-black bg-opacity-50 z-30;
+  }
+}
+
+/* Dark theme enhancements */
+.dark-gradient {
+  background: linear-gradient(135deg, 
+    rgb(15 23 42) 0%, 
+    rgb(127 29 29) 35%, 
+    rgb(30 41 59) 65%, 
+    rgb(15 23 42) 100%);
+}
+
+/* Custom focus styles for accessibility */
+.focus-visible {
+  @apply focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50;
+}
+
+/* Loading states */
+.loading-dots {
+  @apply inline-flex items-center;
+}
+
+.loading-dots::after {
+  content: '';
+  @apply inline-block w-1 h-1 bg-current rounded-full ml-1 animate-pulse;
+  animation-delay: 0.1s;
+}
+
+.loading-dots::before {
+  content: '. . .';
+  @apply animate-pulse;
+}
+
+/* Message status indicators */
+.message-sending {
+  @apply opacity-60;
+}
+
+.message-sent {
+  @apply opacity-100;
+}
+
+.message-failed {
+  @apply opacity-40 text-red-400;
+}
+
+/* Connection status styles */
+.status-connected {
+  @apply bg-green-400;
+}
+
+.status-connecting {
+  @apply bg-yellow-400 animate-pulse;
+}
+
+.status-disconnected {
+  @apply bg-red-400;
+}
+
+/* Custom utilities for RedChat theme */
+.red-glow {
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
+}
+
+.text-shadow {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Responsive breakpoints for sidebar */
+@media (max-width: 1024px) {
+  .chat-container {
+    @apply flex-col;
+  }
+  
+  .chat-sidebar {
+    @apply w-full max-h-80 border-l-0 border-t;
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    @apply hidden;
+  }
+  
+  .print-only {
+    @apply block;
+  }
+}
