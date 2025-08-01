@@ -21,7 +21,7 @@ import {
 } from 'lucide-react';
 
 const SOCKET_URL = process.env.NODE_ENV === 'production' 
-  ? window.location.origin 
+  ? process.env.REACT_APP_BACKEND_URL 
   : 'http://localhost:5000';
 
 function App() {
